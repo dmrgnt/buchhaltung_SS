@@ -13,6 +13,8 @@
     --radius-pill: 999px;
     --transition-fast: 150ms ease-out;
     --container-max: 1120px;
+    scroll-padding-top: 100px; /* Header 70px + Sticky-Puffer 30px */
+    scroll-behavior: smooth;   /* smooth scrolling aktivieren */
 }
 
 *,
@@ -133,6 +135,19 @@ img {
     text-transform: uppercase;
     transition: background var(--transition-fast), color var(--transition-fast),
     border-color var(--transition-fast), transform var(--transition-fast);
+    transition: all var(--transition-fast);
+}
+
+.lang-btn:hover {
+    background: rgba(47, 107, 79, 0.15); /* sehr dezentes Grün */
+    border-color: rgba(47, 107, 79, 0.4);
+    color: var(--primary); /* dunkles Grün */
+    transform: translateY(-1px); /* minimaler Lift */
+}
+
+.lang-btn.active:hover {
+    background: #285a42; /* dunkleres Grün für aktiven Button */
+    border-color: #285a42;
 }
 
 .lang-btn.active {
@@ -233,6 +248,14 @@ img {
     box-shadow: var(--shadow-soft);
     padding: 20px 18px 18px;
     border: 1px solid rgba(177, 150, 115, 0.35);
+    transition: all var(--transition-fast); /* gleiches Timing wie Button */
+    will-change: transform, box-shadow;
+}
+
+.hero-card:hover {
+    transform: translateY(-6px); /* etwas stärker als normale Karten */
+    box-shadow: 0 24px 48px rgba(47, 107, 79, 0.28), 0 12px 24px rgba(47, 107, 79, 0.18);
+    z-index: 11; /* hebt sich über Hero-Text */
 }
 
 .hero-card h2 {
@@ -325,6 +348,12 @@ img {
     border-radius: var(--radius-card);
     border: 1px solid var(--border);
     padding: 12px 14px 14px;
+    transition: all var(--transition-fast);
+}
+
+.portfolio-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 36px rgba(47, 107, 79, 0.22);
 }
 
 .portfolio-item h3 {
@@ -354,6 +383,7 @@ img {
 
 .section {
     padding: 40px 0;
+    border-bottom: 1px solid rgba(191, 169, 142, 0.7); /* neue Trennlinie */
 }
 
 .section-alt {
@@ -382,23 +412,39 @@ img {
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 18px;
 }
-
+/* Letzte Karte (Tools) soll die Breite der oberen 3 übernehmen */
+.cards-grid > .card-soft:last-child {
+    grid-column: 1 / -1; /* spannt über alle Spalten */
+}
 .card {
     background: var(--surface);
     border-radius: var(--radius-card);
     border: 1px solid var(--border);
     padding: 16px 16px 18px;
     box-shadow: 0 10px 22px rgba(26, 17, 8, 0.04);
+    transition: all var(--transition-fast); /* gleiche Timing wie Button */
+    will-change: transform, box-shadow; /* Performance-Optimierung */
+}
+.card:hover {
+    transform: translateY(-4px); /* leicht anheben */
+    box-shadow: 0 20px 40px rgba(47, 107, 79, 0.25), 0 8px 16px rgba(47, 107, 79, 0.15); /* stärkeres Schatten */
+}
+
+/* Für Grün-Karten speziell */
+.card-service:hover {
+    box-shadow: 0 20px 40px rgba(45, 90, 47, 0.3), 0 8px 16px rgba(45, 90, 47, 0.2);
+    transform: translateY(-4px);
 }
 
 .card-service {
-    background: linear-gradient(135deg, #e7f6f7, #d7eef1); /* sanftes Blau/Türkis */
-    border-color: #c2dde0;
+    background: linear-gradient(135deg, #2d5a2f, #1e4021); /* Waldgrün */
+    border-color: #3a6b3d;
+    color: #f0f7f0;
 }
 
 .card-service .card-intro,
 .card-service .card-list {
-    color: #203134;
+    color: #f0f7f0;
 }
 
 
@@ -442,6 +488,12 @@ img {
     border-radius: var(--radius-card);
     border: 1px solid var(--border);
     padding: 14px 14px 16px;
+    transition: all var(--transition-fast); 
+}
+
+.industry-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 36px rgba(47, 107, 79, 0.22);
 }
 
 .industry-card h3 {
@@ -530,6 +582,13 @@ img {
     border: 1px solid var(--border);
     box-shadow: var(--shadow-soft);
     padding: 16px 16px 18px;
+    transition: all var(--transition-fast);
+    will-change: transform, box-shadow;
+}
+
+.contact-form-wrapper:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 48px rgba(47, 107, 79, 0.28), 0 12px 24px rgba(47, 107, 79, 0.18);
 }
 
 .contact-form {
@@ -620,6 +679,9 @@ img {
 /* Responsiv */
 
 @media (max-width: 880px) {
+    :root {
+        scroll-padding-top: 80px; /* Mobile: kleinerer Header */
+    }
     .hero-inner {
         grid-template-columns: 1fr;
     }
@@ -641,6 +703,8 @@ img {
         display: none;
     }
 }
+
+
 
 @media (max-width: 600px) {
     .hero {
