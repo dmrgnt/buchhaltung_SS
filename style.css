@@ -25,13 +25,16 @@
 
 body {
     margin: 0;
-    font-family: "Arvo", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-family: "Merriweather", "Georgia", serif; /* Fallbacks für Offline */
     background-color: var(--bg);
     color: var(--text-main);
-    line-height: 1.6;
+    line-height: 1.7; /* etwas mehr Zeilenhöhe für Serif */
     -webkit-font-smoothing: antialiased;
 }
-
+h1, h2, h3 {
+    font-weight: 700; /* Merriweather Bold */
+    font-family: "Merriweather", serif;
+}
 img {
     max-width: 100%;
     display: block;
