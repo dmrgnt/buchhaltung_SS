@@ -108,7 +108,8 @@ img {
     font-size: 14px;
 }
 
-.main-nav a {
+.main-nav > a,
+.main-nav > .nav-item > a {
     text-decoration: none;
     color: var(--text-muted);
     padding: 6px 0;
@@ -116,11 +117,53 @@ img {
     transition: color var(--transition-fast), border-color var(--transition-fast);
 }
 
-.main-nav a:hover {
+.main-nav > a:hover,
+.main-nav > .nav-item > a:hover {
     color: var(--accent-brown);
     border-color: rgba(139, 90, 43, 0.45);
 }
 
+/* Dropdown-Struktur */
+.nav-item {
+    position: relative;
+}
+
+.nav-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 180px;
+    padding: 8px 0;
+    background: var(--surface);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-soft);
+    opacity: 0;
+    transform: translateY(6px);
+    pointer-events: none;
+    transition: opacity var(--transition-fast), transform var(--transition-fast);
+    z-index: 30;
+}
+
+.nav-dropdown a {
+    display: block;
+    padding: 6px 14px;
+    font-size: 13px;
+    color: var(--text-main);
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.nav-dropdown a:hover {
+    background: #f3eee4;
+    color: var(--accent-brown);
+}
+
+.has-dropdown:hover .nav-dropdown {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
 .lang-switch {
     display: flex;
     gap: 6px;
@@ -379,6 +422,20 @@ img {
     .profile-photo {
         margin-bottom: 4px;
     }
+    /* Basic + Advanced Packages */
+.card-service {
+    background: linear-gradient(135deg, #e7f6f7, #d7eef1);
+    border-color: #c2dde0;
+}
+
+.card-advanced {
+    background: linear-gradient(135deg, #2d5a2f, #1e4021);
+    border-color: #3a6b3d;
+    color: #f0f7f0;
+}
+.card-advanced h3 {
+    color: #ffffff;
+}
 }
 
 
@@ -401,6 +458,11 @@ img {
     font-size: 22px;
     margin: 0 0 6px;
 }
+/* Subsections: h3 in Monthly / One-time Services größer machen */
+.subsection .section-header h3 {
+    font-size: 22px;
+    margin: 0 0 6px;
+}
 
 .section-header p {
     margin: 0;
@@ -408,8 +470,58 @@ img {
     color: var(--text-muted);
 }
 
-/* Cards */
 
+/* Icons */
+/* Grundstil: alle Card-Icons */
+.card-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;                  /* Icon-Größe */
+    margin-bottom: 8px;
+}
+
+/* Basic Package: sanftes Grün */
+.card-icon-basic {
+    background: rgba(169, 221, 177, 0.25);
+    color: #1f3a24;
+    border: 1px solid rgba(160, 207, 167, 0.8);
+}
+
+/* Advanced Package: dunkles Grün + goldener Rand */
+.card-icon-advanced {
+    background: rgba(45, 90, 47, 0.7);
+    color: #fbeec6;
+    border: 1px solid #d8b14c;
+}
+
+/* One-time Services: sehr helles Pastellgrün */
+.card-icon-service {
+    background: rgba(222, 248, 219, 0.8);
+    color: #27442b;
+    border: 1px solid rgba(207, 233, 213, 0.9);
+    margin-right: 8px;
+    margin-bottom: 0;
+}
+
+/* Container für Titel + Icon im Accordion-Header */
+.service-header {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+/* Cards */
+.package-subtitle {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: 10px 0 4px;
+    color: inherit; 
+}
 .cards-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -443,8 +555,87 @@ img {
     background: linear-gradient(135deg, #2d5a2f, #1e4021); /* Waldgrün */
     border-color: #3a6b3d;
     color: #f0f7f0;
+    border-radius: var(--radius-card);
+    border-width: 1px;
+    border-style: solid;
+}
+.card-service h3 {
+    font-size: 17px;
+    line-height: 1.3;
+    margin-bottom: 8px;
+}
+.card-service .card-intro {
+    font-size: 14px;
+    margin-bottom: 12px;
+    line-height: 1.6;
+}
+.card-service .package-subtitle {
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: 12px 0 6px;
+    color: inherit;
+}
+/* Listen-Text */
+.card-service .card-list {
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 10px;
 }
 
+/* Fließtext (Result-Absätze) */
+.card-service p {
+    font-size: 14px;
+    line-height: 1.7;
+}
+/* Basic: dezentes Grün */
+.card-basic {
+    background: linear-gradient(135deg, #2d5a2f, #1e4021);
+    border: 2px solid #e9eeea;
+    color: #f5f3e8;
+}
+/* Advanced: stärkeres Grün + goldener Rand */
+.card-advanced {
+    background: linear-gradient(135deg, #2d5a2f, #1e4021);
+    border: 3px solid #d8b14c;     /* goldener Rand */
+    color: #f5f3e8;
+    box-shadow: 0 16px 32px rgba(45, 90, 47, 0.35);
+}
+.card-advanced h3 {
+    color: #fff;
+}
+
+.card-advanced .card-list .list-highlight {
+    list-style: none;           /* Bullet entfernen */
+    margin-left: 0;
+    padding-left: 0;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 12px;
+    color: #f4e3b1;            /* warmes Gold-Beige */
+    margin-bottom: 4px;
+}
+.card-advanced .card-list .list-highlight .plus-word {
+    display: inline-block;
+    margin-left: 4px;
+    padding: 1px 6px;
+    border-radius: 999px;
+    border: 1px solid rgba(248, 232, 169, 0.7);
+    background: rgba(32, 40, 20, 0.45);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+}
+/* One-time Services: sehr blasser Grünton */
+.service-card {
+    background: linear-gradient(135deg, #2d5a2f, #1e4021);
+    border-radius: var(--radius-card);
+    border: 2px solid #e9eeea;
+    overflow: hidden;
+    color: #f5f3e8;
+    transition: box-shadow var(--transition-fast), transform var(--transition-fast);
+}
 .card-service .card-intro,
 .card-service .card-list {
     color: #f0f7f0;
@@ -453,12 +644,19 @@ img {
 
 .card-soft {
     background: var(--surface-soft);
+    font-size: 13px;           /* kleinere Schrift */
+    padding: 12px 14px;        /* etwas kompakter */
+    opacity: 0.85;             /* leicht transparent */
 }
 
-.card h3 {
-    margin-top: 0;
-    margin-bottom: 8px;
-    font-size: 16px;
+.card-soft h3 {
+    font-size: 14px;           /* Überschrift auch kleiner */
+    margin-bottom: 6px;
+}
+
+.card-soft p {
+    font-size: 13px;
+    line-height: 1.6;
 }
 
 .card-intro {
@@ -478,48 +676,102 @@ img {
     margin-top: 5px;
 }
 
-/* Branchen */
-
-.industries-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 16px;
+.service-card {
+    overflow: hidden;
+    transition: box-shadow var(--transition-fast), transform var(--transition-fast);
 }
 
-.industry-card {
-    background: var(--surface);
-    border-radius: var(--radius-card);
-    border: 1px solid var(--border);
-    padding: 14px 14px 16px;
-    transition: all var(--transition-fast); 
+/* Toggle-Button oben */
+.service-toggle {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 12px 14px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font: inherit;
+    text-align: left;
+    color: inherit;
 }
 
-.industry-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 18px 36px rgba(47, 107, 79, 0.22);
+.service-title {
+    font-weight: 600;
+    font-size: 17px;           /* gleich groß wie Package-Titel */
+}
+/* Unterüberschriften im Inhalt (Includes / Result) */
+.service-section h4 {
+    font-size: 14px;           /* gleich wie package-subtitle */
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: 10px 0 6px;
 }
 
-.industry-card h3 {
-    margin-top: 0;
-    margin-bottom: 6px;
-    font-size: 15px;
+/* Fließtext & Listen in den One-time Services */
+.service-section p,
+.service-section ul li {
+    font-size: 14px;
+    line-height: 1.7;
 }
 
-.industry-card p {
-    margin: 0;
-    font-size: 13px;
-    color: var(--text-muted);
+.service-chevron {
+    font-size: 16px;
+    transition: transform var(--transition-fast);
+}
+
+/* Accordion-Inhalt */
+.service-content {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 14px;
+    transition: max-height 200ms ease-out, padding-top 150ms ease-out, padding-bottom 150ms ease-out;
+}
+
+.service-card.open .service-content {
+    max-height: 1200px;
+    padding-top: 8px;
+    padding-bottom: 12px;
+}
+
+/* Chevron dreht sich bei offenem Zustand */
+.service-card.open .service-chevron {
+    transform: rotate(180deg);
+}
+
+/* leichter Hover-Effekt */
+.service-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 32px rgba(47, 107, 79, 0.18);
 }
 
 /* Kontakt */
 
 .contact-layout {
-    display: grid;
-    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.4fr);
-    gap: 28px;
-    align-items: start;
+    display: block;
 }
 
+.contact-layout-single {
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.contact-channels-wide {
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+}
+
+.channel-large {
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-soft);
+}
 .contact-text h2 {
     margin-top: 0;
     margin-bottom: 8px;
